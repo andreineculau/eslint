@@ -52,6 +52,13 @@ module.exports = {
                     message: "`assert.doesNotThrow()` should be replaced with a comment next to the code."
                 }]
             }
+        },
+        {
+            files: ["tests/lib/linter.js"],
+            env: {
+                node: false,
+                "shared-node-browser": true
+            }
         }
     ]
 };
