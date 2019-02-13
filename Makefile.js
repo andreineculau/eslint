@@ -819,7 +819,7 @@ target.browserify = function() {
     }
 
     // 2. browserify the linter file
-    exec(`${getBinFile("browserify")} lib/linter.js -o ${BUILD_DIR}eslint.js -s eslint --global-transform [ babelify --presets [ es2015 ] ]`);
+    exec(`${getBinFile("browserify")} lib/linter.js -o ${BUILD_DIR}eslint.js -s eslint --global-transform [ babelify --presets [ @babel/preset-env ] ]`);
 
     // 3. Concatenate Babel polyfill and ESLint files together
     cat("./node_modules/babel-polyfill/dist/polyfill.js", `${BUILD_DIR}eslint.js`).to(`${BUILD_DIR}eslint.js`);
