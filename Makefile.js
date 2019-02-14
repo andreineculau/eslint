@@ -597,7 +597,7 @@ target.test = function() {
 
     target.browserify();
 
-    exec(`${getBinFile("browserify")} tests/fixtures/parsers/linter-test-parsers.js -o ${BUILD_DIR}/linter-test-parsers.js -s LinterTestParsers --global-transform [ babelify --presets [ es2015 ] ]`);
+    exec(`${getBinFile("browserify")} tests/fixtures/parsers/linter-test-parsers.js -o ${BUILD_DIR}/linter-test-parsers.js -s LinterTestParsers --global-transform [ babelify --presets [ @babel/preset-env ] ]`);
 
     lastReturn = exec(`${getBinFile("karma")} start karma.conf.js`);
     if (lastReturn.code !== 0) {
@@ -822,7 +822,7 @@ target.browserify = function() {
     exec(`${getBinFile("browserify")} lib/linter.js -o ${BUILD_DIR}eslint.js -s eslint --global-transform [ babelify --presets [ @babel/preset-env ] ]`);
 
     // 3. Concatenate Babel polyfill and ESLint files together
-    cat("./node_modules/babel-polyfill/dist/polyfill.js", `${BUILD_DIR}eslint.js`).to(`${BUILD_DIR}eslint.js`);
+    cat("./node_modules/@babel/polyfill/dist/polyfill.js", `${BUILD_DIR}eslint.js`).to(`${BUILD_DIR}eslint.js`);
 };
 
 target.checkRuleFiles = function() {
